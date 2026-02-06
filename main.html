@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Food @ True Digital Park</title>
+    <style>
+        :root {
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-slate-500-rgb: 98, 108, 113;
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-btn-primary-text: var(--color-cream-50);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+            --font-size-4xl: 30px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --radius-base: 8px;
+            --radius-lg: 12px;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --duration-normal: 250ms;
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-gray-400-rgb: 119, 124, 124;
+                --color-teal-300-rgb: 50, 184, 198;
+                --color-gray-300-rgb: 167, 169, 169;
+                --color-gray-200-rgb: 245, 245, 245;
+                --color-background: var(--color-charcoal-700);
+                --color-surface: var(--color-charcoal-800);
+                --color-text: var(--color-gray-200);
+                --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+                --color-primary: var(--color-teal-300);
+                --color-primary-hover: var(--color-teal-400);
+                --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+                --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+                --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+                --color-btn-primary-text: var(--color-slate-900);
+                --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            background: var(--color-background);
+            color: var(--color-text);
+            padding: var(--space-20);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: var(--space-32);
+        }
+
+        h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 600;
+            margin-bottom: var(--space-8);
+            color: var(--color-text);
+        }
+
+        .subtitle {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-16);
+        }
+
+        .controls {
+            display: flex;
+            gap: var(--space-12);
+            margin-bottom: var(--space-24);
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        label {
+            display: block;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            margin-bottom: var(--space-8);
+            color: var(--color-text);
+        }
+
+        select {
+            width: 100%;
+            padding: var(--space-12);
+            font-size: var(--font-size-base);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            background: var(--color-surface);
+            color: var(--color-text);
+            cursor: pointer;
+            transition: border-color var(--duration-normal) var(--ease-standard);
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .btn-random {
+            width: 100%;
+            padding: var(--space-16) var(--space-24);
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            border: none;
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            margin-bottom: var(--space-32);
+        }
+
+        .btn-random:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-random:active {
+            background: var(--color-primary-active);
+            transform: translateY(0);
+        }
+
+        .results {
+            display: grid;
+            gap: var(--space-16);
+        }
+
+        .restaurant-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-20);
+            box-shadow: var(--shadow-md);
+            transition: transform var(--duration-normal) var(--ease-standard);
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .restaurant-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: var(--space-12);
+        }
+
+        .restaurant-name {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-8);
+        }
+
+        .restaurant-number {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--color-primary);
+            opacity: 0.3;
+        }
+
+        .restaurant-type {
+            display: inline-block;
+            padding: var(--space-8) var(--space-12);
+            background: var(--color-secondary);
+            color: var(--color-text);
+            font-size: var(--font-size-sm);
+            border-radius: var(--radius-base);
+            margin-bottom: var(--space-12);
+        }
+
+        .restaurant-location {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+        }
+
+        .location-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: var(--space-32);
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-lg);
+        }
+
+        .stats {
+            text-align: center;
+            margin-top: var(--space-32);
+            padding: var(--space-16);
+            background: var(--color-secondary);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .restaurant-card {
+            animation: fadeIn 0.4s var(--ease-standard);
+        }
+
+        .restaurant-card:nth-child(1) { animation-delay: 0s; }
+        .restaurant-card:nth-child(2) { animation-delay: 0.1s; }
+        .restaurant-card:nth-child(3) { animation-delay: 0.2s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍽️ Random Food TDP 101</h1>
+            <p class="subtitle">สุ่มร้านอาหาร 3 ร้าน จาก True Digital Park<br>ข้อมูลอัปเดต: กุมภาพันธ์ 2026</p>
+        </header>
+
+        <div class="controls">
+            <div class="filter-group">
+                <label for="buildingFilter">กรองตามอาคาร</label>
+                <select id="buildingFilter">
+                    <option value="all">ทุกอาคาร</option>
+                    <option value="East">East</option>
+                    <option value="West">West</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="floorFilter">กรองตามชั้น</label>
+                <select id="floorFilter">
+                    <option value="all">ทุกชั้น</option>
+                    <option value="1">ชั้น 1</option>
+                    <option value="2">ชั้น 2</option>
+                    <option value="3">ชั้น 3</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="typeFilter">กรองตามประเภท</label>
+                <select id="typeFilter">
+                    <option value="all">ทุกประเภท</option>
+                    <option value="ก๋วยเตี๋ยว">ก๋วยเตี๋ยว</option>
+                    <option value="อาหารไทย">อาหารไทย</option>
+                    <option value="อาหารญี่ปุ่น">อาหารญี่ปุ่น</option>
+                    <option value="อาหารจีน">อาหารจีน</option>
+                    <option value="อาหารเกาหลี">อาหารเกาหลี</option>
+                    <option value="ปิ้งย่าง">ปิ้งย่าง/บุฟเฟต์</option>
+                    <option value="ชาบู">ชาบู/สุกี้</option>
+                    <option value="ฟาสต์ฟู้ด">ฟาสต์ฟู้ด</option>
+                    <option value="อื่นๆ">อื่นๆ</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="btn-random" onclick="randomizeRestaurants()">🎲 สุ่มร้านอาหาร 3 ร้าน</button>
+
+        <div id="results" class="results"></div>
+
+        <div class="stats">
+            <span id="totalRestaurants">0</span> ร้าน | ข้อมูล ณ วันที่ 06/02/2026
+        </div>
+    </div>
+
+    <script>
+        const restaurants = [
+            { name: "วัวกิว (Wuagyu)", type: "ก๋วยเตี๋ยว", building: "East", floor: 1 },
+            { name: "Choongman Chicken", type: "อาหารเกาหลี", building: "East", floor: 2 },
+            { name: "สุปรีย์", type: "อาหารไทย", building: "East", floor: 2 },
+            { name: "@MALA (Panda Mala)", type: "อาหารจีน", building: "East", floor: 1 },
+            { name: "นิตยาไก่ย่าง", type: "อาหารไทย", building: "East", floor: 1 },
+            { name: "Sloth Sukiyaki & Shabu Bar", type: "ชาบู", building: "East", floor: 2 },
+            { name: "LT Fish Restaurant", type: "อาหารจีน", building: "East", floor: 2 },
+            { name: "Shinla Korean Restaurant", type: "อาหารเกาหลี", building: "East", floor: 3 },
+            { name: "ThongSmith (ทองสมิทธ์)", type: "ก๋วยเตี๋ยว", building: "East", floor: 1 },
+            { name: "getfresh", type: "อื่นๆ", building: "East", floor: 2 },
+            { name: "HONG BAO (ฮงเปา)", type: "อาหารจีน", building: "East", floor: 3 },
+            { name: "Wine Connection", type: "อื่นๆ", building: "East", floor: 3 },
+            { name: "กระทะเหล็ก", type: "อาหารไทย", building: "East", floor: 2 },
+            { name: "Ginger Farm Kitchen", type: "อาหารไทย", building: "East", floor: 2 },
+            { name: "PASH Juice", type: "อื่นๆ", building: "East", floor: 1 },
+            { name: "Oyster Bay", type: "อาหารญี่ปุ่น", building: "East", floor: 2 },
+            { name: "Vie Ha Long", type: "อื่นๆ", building: "East", floor: 3 },
+            { name: "Fantuan Thailand (ฟ่านถวน)", type: "อาหารจีน", building: "West", floor: 1 },
+            { name: "กับข้าวกับปลา", type: "อาหารไทย", building: "East", floor: 2 },
+            { name: "Zaab Eli (แซ่บอีลี่)", type: "อาหารไทย", building: "East", floor: 2 },
+            { name: "แก้วไก่กรอบ", type: "อาหารไทย", building: "West", floor: 1 },
+            { name: "Gyu-Ya Yakiniku", type: "ปิ้งย่าง", building: "West", floor: 1 },
+            { name: "ก๋วยเตี๋ยวเรือลายเส้น", type: "ก๋วยเตี๋ยว", building: "West", floor: 1 },
+            { name: "บ้านหญิง (Baan Ying)", type: "อาหารไทย", building: "West", floor: 1 },
+            { name: "Fatt Chicken Rice (ฟัด ชิกเก้น)", type: "อื่นๆ", building: "West", floor: 1 },
+            { name: "ตั้งใจย่าง", type: "ปิ้งย่าง", building: "East", floor: 1 },
+            { name: "MK Restaurants", type: "ชาบู", building: "East", floor: 2 },
+            { name: "Yakiniku Like", type: "อาหารญี่ปุ่น", building: "East", floor: 2 },
+            { name: "KFC", type: "ฟาสต์ฟู้ด", building: "West", floor: 1 },
+            { name: "McDonald's", type: "ฟาสต์ฟู้ด", building: "West", floor: 1 },
+            { name: "ฮาจิบัง ราเมน", type: "อาหารญี่ปุ่น", building: "East", floor: 2 },
+            { name: "Sushiro", type: "อาหารญี่ปุ่น", building: "East", floor: 3 }
+        ];
+
+        function updateTotalCount() {
+            document.getElementById('totalRestaurants').textContent = restaurants.length;
+        }
+
+        function getFilteredRestaurants() {
+            const building = document.getElementById('buildingFilter').value;
+            const floor = document.getElementById('floorFilter').value;
+            const type = document.getElementById('typeFilter').value;
+
+            return restaurants.filter(restaurant => {
+                const buildingMatch = building === 'all' || restaurant.building === building;
+                const floorMatch = floor === 'all' || restaurant.floor.toString() === floor;
+                const typeMatch = type === 'all' || restaurant.type === type;
+                return buildingMatch && floorMatch && typeMatch;
+            });
+        }
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function randomizeRestaurants() {
+            const filtered = getFilteredRestaurants();
+            const resultsDiv = document.getElementById('results');
+
+            if (filtered.length === 0) {
+                resultsDiv.innerHTML = '<div class="empty-state">❌ ไม่พบร้านอาหารที่ตรงกับตัวกรอง<br>ลองเปลี่ยนตัวกรองใหม่นะ!</div>';
+                return;
+            }
+
+            const shuffled = shuffleArray(filtered);
+            const selected = shuffled.slice(0, Math.min(3, filtered.length));
+
+            resultsDiv.innerHTML = '';
+            selected.forEach((restaurant, index) => {
+                const card = document.createElement('div');
+                card.className = 'restaurant-card';
+                card.innerHTML = `
+                    <div class="restaurant-header">
+                        <div>
+                            <h3 class="restaurant-name">${restaurant.name}</h3>
+                            <span class="restaurant-type">${restaurant.type}</span>
+                        </div>
+                        <div class="restaurant-number">${index + 1}</div>
+                    </div>
+                    <div class="restaurant-location">
+                        <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>อาคาร ${restaurant.building} | ชั้น ${restaurant.floor}</span>
+                    </div>
+                `;
+                resultsDiv.appendChild(card);
+            });
+        }
+
+        updateTotalCount();
+
+        document.getElementById('buildingFilter').addEventListener('change', () => {
+            const filtered = getFilteredRestaurants();
+            document.getElementById('totalRestaurants').textContent = filtered.length;
+        });
+
+        document.getElementById('floorFilter').addEventListener('change', () => {
+            const filtered = getFilteredRestaurants();
+            document.getElementById('totalRestaurants').textContent = filtered.length;
+        });
+
+        document.getElementById('typeFilter').addEventListener('change', () => {
+            const filtered = getFilteredRestaurants();
+            document.getElementById('totalRestaurants').textContent = filtered.length;
+        });
+    </script>
+</body>
+</html>
